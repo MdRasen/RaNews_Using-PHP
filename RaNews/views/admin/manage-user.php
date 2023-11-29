@@ -60,6 +60,30 @@ include('../includes/admin/topbar.php');
     </div>
 </div>
 
+<!-- Delete User Modal -->
+<div class="modal fade" id="deleteUserModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Delete User?</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="../../controllers/user-controller.php" method="POST">
+                <div class="modal-body">
+                    Are you sure, You want to delete this user?
+                    <input type="hidden" name="delete_id" class="delete_user_id">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-danger" name="deleteUser">Yes, Delete</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 <!-- Begin Page Content -->
 <div class="container-fluid">
     <!-- Page Heading -->
@@ -73,7 +97,7 @@ include('../includes/admin/topbar.php');
             <div class="card border-left-primary shadow h-100 py-2">
                 <div class="card-body">
                     <!-- Alert message start -->
-                    <!--  -->
+                    <?php alertMessage(); ?>
                     <!-- Alert message end -->
                     <div class="table-responsive">
                         <table class="table table-bordered" id="dataTableUser" width="100%" cellspacing="0">
@@ -105,9 +129,9 @@ include('../includes/admin/topbar.php');
                                                 <a href="edit-user.php?id=<?= $item['id'] ?>" class="btn btn-sm btn-info">
                                                     <i class="fas fa-edit"></i>
                                                 </a>
-                                                <a href="../../controllers/user-controller.php?status=delete&&id=<?= $item['id'] ?>" class="btn btn-sm btn-danger">
+                                                <button type="button" value="<?= $item['id'] ?>" class="btn btn-sm btn-danger userDeleteBtn">
                                                     <i class="fas fa-trash"></i>
-                                                </a>
+                                                </button>
                                             </td>
                                         </tr>
                                     <?php

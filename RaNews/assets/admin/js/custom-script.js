@@ -49,4 +49,11 @@ $(document).ready(function () {
       swal("Please fill the required fields!", "", "warning");
     }
   });
+
+  // User delete confirmation
+  $(document).on("click", ".userDeleteBtn", function () {
+    var user_id = $(this).val();
+    $(".delete_user_id").val(user_id);
+    $("#deleteUserModal").modal("show");
+  });
 });
