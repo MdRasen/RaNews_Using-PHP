@@ -68,7 +68,66 @@ include('../includes/admin/topbar.php');
         <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" data-toggle="modal" data-target="#addUserModal"><i class="fas fa-user-plus fa-sm text-white-50"></i> Add User</a>
     </div>
     <!-- Content Row -->
+    <div class="row">
+        <div class="col-xl-12 mb-4">
+            <div class="card border-left-primary shadow h-100 py-2">
+                <div class="card-body">
+                    <!-- Alert message start -->
+                    <!--  -->
+                    <!-- Alert message end -->
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTableUser" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>Image</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
+                                    <th>Type</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                $users = ViewUser();
+                                if (mysqli_num_rows($users) > 0) {
+                                    foreach ($users as $item) :
+                                ?>
+                                        <tr>
+                                            <td><img src="../../<?= $item['image'] == true ? $item['image'] : 'assets/admin/img/no-photo.jpg' ?>" alt="image" style="width: 60px; height: 60px; object-fit: cover;"></td>
+                                            <td><?= $item['name'] ?></td>
+                                            <td><?= $item['email'] ?></td>
+                                            <td><?= $item['phone'] ?></td>
+                                            <td><?= $item['type'] == 0 ? "User" : "Admin" ?></td>
+                                            <td><?= $item['status'] == 0 ? '<span class="text-white badge bg-success">Active</span>' : '<span class="text-white badge bg-danger">Banned</span>' ?></td>
+                                            <td>
+                                                <a href="edit-user.php?id=<?= $item['id'] ?>" class="btn btn-sm btn-info">
+                                                    <i class="fas fa-edit"></i>
+                                                </a>
+                                                <a href="../../controllers/user-controller.php?status=delete&&id=<?= $item['id'] ?>" class="btn btn-sm btn-danger">
+                                                    <i class="fas fa-trash"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    <?php
+                                    endforeach;
+                                } else {
+                                    ?>
+                                    <tr>
+                                        <td class="text-center" colspan="7">No data found!</td>
+                                    </tr>
+                                <?php
+                                }
+                                ?>
 
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 <!-- /.container-fluid -->
 

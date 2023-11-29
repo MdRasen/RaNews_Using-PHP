@@ -27,3 +27,13 @@ function insertUser($data)
     $result = mysqli_query($conn, $query);
     return $result;
 }
+
+// View data using this function
+function ViewUser()
+{
+    global $conn;
+
+    $query = "SELECT * FROM users";
+    $result = mysqli_query($conn, $query);
+    return $result;
+}

@@ -5,7 +5,7 @@ $(document).ready(function () {
 
 // For customized row in dataTable
 $(document).ready(function () {
-  $("#dataTableCustom").DataTable({
+  $("#dataTableUser").DataTable({
     pageLength: 6,
     lengthMenu: [
       [6, 12, 24, -1],
