@@ -2,7 +2,7 @@
 // Add all the required functions for user-model
 
 // Get user by email address
-function getByEmail($email)
+function userByEmail($email)
 {
     global $conn;
     $email = validate($email);

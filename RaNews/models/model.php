@@ -2,6 +2,7 @@
 session_start();
 // Add all the required models
 require 'user-model.php';
+require 'public-model.php';
 
 // Input field validation
 function validate($inputData)

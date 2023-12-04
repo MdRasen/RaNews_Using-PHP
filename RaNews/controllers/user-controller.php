@@ -14,7 +14,7 @@ if (isset($_POST['saveUserBtn'])) {
     $u_status = validate($_POST['u_status']);
 
     // Get user by email
-    $checkUser = getByEmail($email);
+    $checkUser = userByEmail($email);
     if (mysqli_num_rows($checkUser) > 0) {
         jsonResponse(403, "error", 'Email already exist, Please try another!');
     } else {
