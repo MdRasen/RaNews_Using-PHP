@@ -1,6 +1,7 @@
 <?php
 require '../../controllers/config/dbcon.php';
 require '../../models/model.php';
+require '../../controllers/authentication.php';
 ?>
 
 <!DOCTYPE html>
