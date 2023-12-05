@@ -91,7 +91,7 @@ function updateUser($id, $data)
 }
 
 // Delete data using this function
-function delete($id)
+function deleteUser($id)
 {
     global $conn;
     $id = validate($id);

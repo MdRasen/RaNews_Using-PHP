@@ -4,24 +4,24 @@ include('../includes/admin/sidebar.php');
 include('../includes/admin/topbar.php');
 ?>
 
-<!-- Delete User Modal -->
-<div class="modal fade" id="deleteUserModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<!-- Delete Category Modal -->
+<div class="modal fade" id="deleteCategoryModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Delete User?</h5>
+                <h5 class="modal-title" id="staticBackdropLabel">Delete Categroy?</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="../../controllers/user-controller.php" method="POST">
+            <form action="../../controllers/category-controller.php" method="POST">
                 <div class="modal-body">
-                    Are you sure, You want to delete this user?
-                    <input type="hidden" name="delete_id" class="delete_user_id">
+                    Are you sure, You want to delete this category?
+                    <input type="hidden" name="delete_id" class="delete_category_id">
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-danger" name="deleteUser">Yes, Delete</button>
+                    <button type="submit" class="btn btn-danger" name="deleteCategory">Yes, Delete</button>
                 </div>
             </form>
         </div>

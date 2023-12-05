@@ -103,7 +103,7 @@ if (isset($_POST['updateUser'])) {
 
         $result = updateUser($id, $data);
         if ($result) {
-            redirect('../views/admin/edit-user.php?id=' . $id, 'User has been updated successfully.');
+            redirect('../views/admin/manage-user.php', 'User has been updated successfully.');
         } else {
             redirect('../views/admin/edit-user.php?id=' . $id, 'Something went wrong, Please try again!');
         }
@@ -116,7 +116,7 @@ if (isset($_POST['deleteUser'])) {
 
     $user = userById($delete_id);
     if ($user['status'] == 200) {
-        $userDeleteRes = delete($delete_id);
+        $userDeleteRes = deleteUser($delete_id);
         if ($userDeleteRes) {
             redirect('../views/admin/manage-user.php', 'User has been deleted successfully.');
         } else {

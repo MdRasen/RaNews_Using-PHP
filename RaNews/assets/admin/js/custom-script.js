@@ -56,4 +56,11 @@ $(document).ready(function () {
     $(".delete_user_id").val(user_id);
     $("#deleteUserModal").modal("show");
   });
+
+  // Category delete confirmation
+  $(document).on("click", ".categoryDeleteBtn", function () {
+    var category_id = $(this).val();
+    $(".delete_category_id").val(category_id);
+    $("#deleteCategoryModal").modal("show");
+  });
 });
