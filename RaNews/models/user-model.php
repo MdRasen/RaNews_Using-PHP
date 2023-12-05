@@ -63,7 +63,7 @@ function insertUser($data)
 }
 
 // View data using this function
-function ViewUser()
+function viewUsers()
 {
     global $conn;
 

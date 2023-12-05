@@ -100,7 +100,7 @@ include('../includes/admin/topbar.php');
                     <?php alertMessage(); ?>
                     <!-- Alert message end -->
                     <div class="table-responsive">
-                        <table class="table table-bordered" id="dataTableUser" width="100%" cellspacing="0">
+                        <table class="table table-bordered table-hover" id="dataTableUser" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
                                     <th>Image</th>
@@ -114,7 +114,7 @@ include('../includes/admin/topbar.php');
                             </thead>
                             <tbody>
                                 <?php
-                                $users = ViewUser();
+                                $users = viewUsers();
                                 if (mysqli_num_rows($users) > 0) {
                                     foreach ($users as $item) :
                                 ?>
