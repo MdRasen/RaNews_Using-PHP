@@ -48,6 +48,7 @@ include('../includes/admin/topbar.php');
                             <thead>
                                 <tr>
                                     <th>Name</th>
+                                    <th>Name Slug</th>
                                     <th>Description</th>
                                     <th>Sort</th>
                                     <th>Status</th>
@@ -62,6 +63,7 @@ include('../includes/admin/topbar.php');
                                 ?>
                                         <tr>
                                             <td><?= $item['name'] ?></td>
+                                            <td><?= $item['name_slug'] ?></td>
                                             <td><?= $item['short_desc'] ?></td>
                                             <td><?= $item['sort'] ?></td>
                                             <td><?= $item['status'] == 0 ? '<span class="text-white badge bg-success">Active</span>' : '<span class="text-white badge bg-danger">Disabled</span>' ?></td>

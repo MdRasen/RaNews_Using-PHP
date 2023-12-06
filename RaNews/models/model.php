@@ -48,3 +48,11 @@ function alertMessage()
         unset($_SESSION['status']);
     }
 }
+
+// Converting String to Slug
+function stringToSlug($name)
+{
+    $special_characters = [",", ";", "'", '"', "`", "/", "\\", ":", "‘", "’", "!", "?", "%", "^", "#", "@", "*", "~", ")", "("];
+    $title = str_replace($special_characters, '', $name);
+    return preg_replace('/\s+/u', '-', $title);
+}

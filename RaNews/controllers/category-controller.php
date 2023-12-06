@@ -16,8 +16,10 @@ if (isset($_POST['createCategory'])) {
     if (mysqli_num_rows($checkCategory) > 0) {
         redirect('../views/admin/add-category.php', 'Category already exist, Please try again.');
     } else {
+        $name_slug = stringToSlug($name);
         $data = [
             'name' => $name,
+            'name_slug' => $name_slug,
             'short_desc' => $short_desc,
             'sort' => $sort,
             'status' => $status
@@ -54,8 +56,10 @@ if (isset($_POST['updateCategory'])) {
         redirect('../views/admin/edit-category.php?id=' . $id, 'No category found, Please try again');
     }
 
+    $name_slug = stringToSlug($name);
     $data = [
         'name' => $name,
+        'name_slug' => $name_slug,
         'short_desc' => $short_desc,
         'sort' => $sort,
         'status' => $status
@@ -63,7 +67,7 @@ if (isset($_POST['updateCategory'])) {
 
     $result = updateCategory($id, $data);
     if ($result) {
-        redirect('../views/admin/manage-category.php', 'User has been updated successfully.');
+        redirect('../views/admin/manage-category.php', 'Category has been updated successfully.');
     } else {
         redirect('../views/admin/edit-category.php?id=' . $id, 'Something went wrong, Please try again!');
     }

@@ -41,7 +41,7 @@ include '../includes/public/header.php';
                                     <?php
                                     if (isset($_SESSION['status'])) {
                                     ?>
-                                        <div class="alert alert-warning alert-dismissible fade show mt-2" role="alert">
+                                        <div class="alert alert-warning alert-dismissible fade show mt-3" role="alert">
                                             <strong>Holy guacamole!</strong> <?= $_SESSION['status'] ?>
                                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                                         </div>
