@@ -42,7 +42,7 @@ function viewCategories()
 function categoryById($id)
 {
     global $conn;
-    $userId = validate($id);
+    $id = validate($id);
 
     $query = "SELECT * FROM categories WHERE id='$id' LIMIT 1";
     $result = mysqli_query($conn, $query);

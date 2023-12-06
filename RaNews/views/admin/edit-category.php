@@ -51,7 +51,7 @@ include('../includes/admin/topbar.php');
                                         <label for="status">Status</label>
                                         <select name="status" class="form-control">
                                             <option value="0" <?= $categoryInfo['data']['status'] == "0" ? 'selected' : '' ?>>Active</option>
-                                            <option value="1" <?= $categoryInfo['data']['status'] == "1" ? 'selected' : '' ?>>Disabled</option>
+                                            <option value="1" <?= $categoryInfo['data']['status'] == "1" ? 'selected' : '' ?>>Disable</option>
                                         </select>
                                     </div>
                                 </div>

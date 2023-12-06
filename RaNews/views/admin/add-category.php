@@ -33,7 +33,7 @@ include('../includes/admin/topbar.php');
                                 <label for="status">Status</label>
                                 <select name="status" name="status" class="form-control">
                                     <option value="0">Active</option>
-                                    <option value="1">Disabled</option>
+                                    <option value="1">Disable</option>
                                 </select>
                             </div>
                         </div>

@@ -64,3 +64,11 @@ $(document).ready(function () {
     $("#deleteCategoryModal").modal("show");
   });
 });
+
+// Summernote JS Link
+$(document).ready(function () {
+  $("#summernote").summernote({
+    height: 250,
+  });
+  $(".dropdown-toggle").dropdown();
+});

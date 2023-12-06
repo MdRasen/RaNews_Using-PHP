@@ -27,6 +27,10 @@ require '../../controllers/authentication.php';
     <!-- Custom styles for this page -->
     <link href="../../assets/admin/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
+    <!-- Summernote CSS Link -->
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+
 </head>
 
 <body id="page-top">

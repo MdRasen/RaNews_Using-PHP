@@ -49,6 +49,9 @@
 <!-- Swal CDN -->
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
+<!-- Summernote JS -->
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+
 <!-- Custom script -->
 <script src="../../assets/admin/js/custom-script.js"></script>
 

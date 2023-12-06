@@ -11,6 +11,22 @@ if (isset($_POST['createCategory'])) {
     $sort = validate($_POST['sort']);
     $status = validate($_POST['status']);
 
+    // For creating default category - অন্যান্য
+    $checkCategory = categoryByName("অন্যান্য");
+    if (mysqli_num_rows($checkCategory) == 0) {
+        $data = [
+            'name' => 'অন্যান্য',
+            'name_slug' => 'অন্যান্য',
+            'sort' => 9999,
+            'status' => 0
+        ];
+        // Inert category
+        $result = insertCategory($data);
+        if (!$result) {
+            redirect('../views/admin/add-category.php', 'Something went wrong, Please try again.');
+        }
+    }
+
     // Get category by name
     $checkCategory = categoryByName($name);
     if (mysqli_num_rows($checkCategory) > 0) {
