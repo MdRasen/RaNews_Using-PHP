@@ -16,3 +16,13 @@ function insertPost($data)
     $result = mysqli_query($conn, $query);
     return $result;
 }
+
+// View data using this function
+function viewPosts()
+{
+    global $conn;
+
+    $query = "SELECT * FROM posts";
+    $result = mysqli_query($conn, $query);
+    return $result;
+}

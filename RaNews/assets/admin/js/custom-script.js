@@ -63,6 +63,13 @@ $(document).ready(function () {
     $(".delete_category_id").val(category_id);
     $("#deleteCategoryModal").modal("show");
   });
+
+  // Post delete confirmation
+  $(document).on("click", ".postDeleteBtn", function () {
+    var post_id = $(this).val();
+    $(".delete_post_id").val(post_id);
+    $("#deletePostModal").modal("show");
+  });
 });
 
 // Summernote JS Link
