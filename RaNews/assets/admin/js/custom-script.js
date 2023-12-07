@@ -70,6 +70,13 @@ $(document).ready(function () {
     $(".delete_post_id").val(post_id);
     $("#deletePostModal").modal("show");
   });
+
+  // Image delete confirmation
+  $(document).on("click", ".imageDeleteBtn", function () {
+    var image_id = $(this).val();
+    $(".delete_image_id").val(image_id);
+    $("#deleteImageModal").modal("show");
+  });
 });
 
 // Summernote JS Link

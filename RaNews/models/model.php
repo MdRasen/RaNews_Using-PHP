@@ -5,6 +5,7 @@ require 'user-model.php';
 require 'public-model.php';
 require 'category-model.php';
 require 'post-model.php';
+require 'gallery-model.php';
 
 // Input field validation
 function validate($inputData)

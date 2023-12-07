@@ -73,6 +73,13 @@
         </div>
     </li>
 
+    <!-- Nav Item - Dashboard -->
+    <li class="nav-item active">
+        <a class="nav-link" href="../admin/manage-gallery.php">
+            <i class="fas fa-images"></i>
+            <span>Manage Gallery</span></a>
+    </li>
+
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
 
