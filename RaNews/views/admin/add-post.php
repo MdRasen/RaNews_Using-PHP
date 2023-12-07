@@ -44,7 +44,6 @@ include('../includes/admin/topbar.php');
                                         endforeach;
                                     } else {
                                         ?>
-                                        <option value="others">অন্যান্য</option>
                                     <?php
                                     }
                                     ?>
@@ -61,11 +60,11 @@ include('../includes/admin/topbar.php');
                         <div class="row">
                             <div class="col-md-12 mb-3">
                                 <label for="desc">Description *</label>
-                                <textarea name="desc" rows="5" class="form-control" placeholder="Description" id="summernote" required></textarea>
+                                <textarea name="desc" rows="5" class="form-control" placeholder="Description" id="summernote"></textarea>
                             </div>
                             <div class="col-md-12 mb-3">
                                 <label for="tags">Tags</label>
-                                <textarea name="tags" rows="3" class="form-control" placeholder="Tags"></textarea>
+                                <textarea name="tags" rows="3" class="form-control" placeholder="Tags (Separated by commas)"></textarea>
                             </div>
                         </div>
                         <div class="row">

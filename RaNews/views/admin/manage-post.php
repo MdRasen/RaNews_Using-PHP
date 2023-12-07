@@ -21,7 +21,7 @@ include('../includes/admin/topbar.php');
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-danger" name="deleteCategory">Yes, Delete</button>
+                    <button type="submit" class="btn btn-danger" name="deletePost">Yes, Delete</button>
                 </div>
             </form>
         </div>
