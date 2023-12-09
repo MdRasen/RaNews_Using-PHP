@@ -12,24 +12,30 @@
                     </div>
                     <div class="overflow-hidden" style="width: 735px;">
                         <div id="note" class="ps-2">
-                            <img src="img/features-fashion.jpg" class="img-fluid rounded-circle border border-3 border-primary me-2" style="width: 30px; height: 30px;" alt="">
+                            <?php
+                            $top_post = "SELECT * FROM posts WHERE top_status='1' LIMIT 1";
+                            $result = mysqli_query($conn, $top_post);
+                            if ($result) {
+                                if (mysqli_num_rows($result) == 1) {
+                                    $topPostData = mysqli_fetch_assoc($result);
+                                    $image_src = $topPostData['image'];
+                                    $title = $topPostData['title'];
+                                } else {
+                                    $title = "No news has been selected as top news!";
+                                }
+                            }
+                            ?>
+                            <img src="../../<?= $image_src == true ? $image_src : 'assets/admin/img/no-photo.jpg' ?>" class="img-fluid rounded-circle border border-3 border-primary me-2" style="width: 30px; height: 30px;" alt="">
                             <a href="#">
-                                <p class="text-white mb-0 link-hover">Newsan unknown printer took a galley of type andscrambled Newsan.</p>
+                                <p class="text-white mb-0 link-hover"><?= $title ?></p>
                             </a>
                         </div>
                     </div>
                 </div>
                 <div class="top-link flex-lg-wrap">
-                    <i class="fas fa-calendar-alt text-white border-end border-secondary pe-2 me-2"> <span class="text-body">Tuesday, Sep 12, 2024</span></i>
+                    <i class="fas fa-calendar-alt text-white border-end border-secondary pe-2 me-2"> <span class="text-body"><?= date('D') ?>, <?= date('M d, Y') ?></span></i>
                     <div class="d-flex icon">
-                        <p class="mb-0 text-white me-2">Follow Us:</p>
-                        <a href="" class="me-2"><i class="fab fa-facebook-f text-body link-hover"></i></a>
-                        <a href="" class="me-2"><i class="fab fa-twitter text-body link-hover"></i></a>
-                        <a href="" class="me-2"><i class="fab fa-instagram text-body link-hover"></i></a>
-                        <a href="" class="me-2"><i class="fab fa-youtube text-body link-hover"></i></a>
-                        <a href="" class="me-2"><i class="fab fa-linkedin-in text-body link-hover"></i></a>
-                        <a href="" class="me-2"><i class="fab fa-skype text-body link-hover"></i></a>
-                        <a href="" class=""><i class="fab fa-pinterest-p text-body link-hover"></i></a>
+                        <?= isset($_SESSION['loggedIn']) ? '<a href="../admin/dashboard.php" class="me-2">Back To Dashboard</a>' : '<a href="login.php" class="me-2">Login Now</a>' ?>
                     </div>
                 </div>
             </div>
@@ -38,7 +44,7 @@
     <div class="container-fluid bg-light">
         <div class="container px-0">
             <nav class="navbar navbar-light navbar-expand-xl">
-                <a href="index.html" class="navbar-brand mt-3">
+                <a href="index.php" class="navbar-brand mt-3">
                     <p class="text-primary display-6 mb-2" style="line-height: 0;">Ra</p>
                     <small class="text-body fw-normal" style="letter-spacing: 12px;">News</small>
                 </a>
@@ -81,11 +87,7 @@
                                 ?>
                                 <div class="d-flex flex-column ms-2" style="width: 150px;">
                                     <span class="text-body">Dhaka, BD</span>
-                                    <?php
-                                    $today = date('D');
-                                    $todayDate = date('M d, Y');
-                                    ?>
-                                    <small><?= $today ?> . <?= date("M d, Y", strtotime($todayDate)); ?> </small>
+                                    <small><?= date('D') ?> . <?= date("M d, Y", strtotime(date('M d, Y'))); ?> </small>
                                 </div>
                             </div>
                         </div>
