@@ -41,6 +41,8 @@ if (isset($_POST['createPost'])) {
             'tags' => $tags,
             'created_by_id' => $_SESSION['loggedInUser']['user_id'],
             'status' => $status,
+            'top_status' => 0,
+            'total_views' => 0,
             'updated_at' => date('Y-m-d H:i:s', strtotime('+6 hours'))
         ];
         // Inert post
@@ -64,6 +66,7 @@ if (isset($_POST['updatePost'])) {
     $desc = validate($_POST['desc']);
     $tags = validate($_POST['tags']);
     $status = validate($_POST['status']);
+    $top_status = validate($_POST['top_status']);
 
     if ($desc == "") {
         redirect('../views/admin/edit-post.php?id=' . $id, 'Fill the required fields and try again.');
@@ -116,6 +119,7 @@ if (isset($_POST['updatePost'])) {
             'description' => $desc,
             'tags' => $tags,
             'status' => $status,
+            'top_status' => $top_status,
             'updated_at' => date('Y-m-d H:i:s', strtotime('+6 hours'))
         ];
 

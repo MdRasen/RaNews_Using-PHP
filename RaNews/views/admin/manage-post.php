@@ -43,6 +43,35 @@ include('../includes/admin/topbar.php');
                     <!-- Alert message start -->
                     <?php alertMessage(); ?>
                     <!-- Alert message end -->
+                    <form action="" method="GET" class="pb-3">
+                        <div class="row">
+                            <div class="col-md-5">
+                                <input type="date" name="date" class="form-control" value="<?= isset($_GET['date']) == true ? $_GET['date'] : '' ?>">
+                            </div>
+                            <div class="col-md-5">
+                                <select name="category_id" class="form-control">
+                                    <option value="">Select Category</option>
+                                    <?php
+                                    $categories = viewCategories();
+                                    if (mysqli_num_rows($categories) > 0) {
+                                        foreach ($categories as $item) :
+                                    ?>
+                                            <option value="<?= $item['id'] ?>" <?= isset($_GET['category_id']) == true ? ($_GET['category_id'] == $item['id'] ? 'selected' : '') : '' ?>><?= $item['name'] ?></option>
+                                        <?php
+                                        endforeach;
+                                    } else {
+                                        ?>
+                                    <?php
+                                    }
+                                    ?>
+                                </select>
+                            </div>
+                            <div class="col-md-2">
+                                <button type="submit" class="btn btn-primary">Filter</button>
+                                <a href="manage-post.php" class="btn btn-danger">Reset</a>
+                            </div>
+                        </div>
+                    </form>
                     <div class="table-responsive">
                         <table class="table table-bordered table-hover" id="dataTable" width="100%" cellspacing="0">
                             <thead>
@@ -57,17 +86,35 @@ include('../includes/admin/topbar.php');
                             </thead>
                             <tbody>
                                 <?php
-                                $postQuery = "SELECT p.id as postId, p.image as postImage, p.status as postStatus, c.name as categoryName, u.name as userName, p.*, c.*, u.* FROM posts as p, categories as c, users as u WHERE c.id = p.category_id AND p.created_by_id = u.id";
+                                if (isset($_GET['date']) || isset($_GET['category_id'])) {
+                                    $postDate = validate($_GET['date']);
+                                    $startDate = date('Y-m-d H:i:s', strtotime($postDate));
+                                    $endDate = date('Y-m-d H:i:s', strtotime($postDate . ' +1 day'));
+                                    $categoryId = validate($_GET['category_id']);
+
+                                    if ($postDate != '' && $categoryId != '') {
+                                        $postQuery = "SELECT p.id as postId, p.image as postImage, p.status as postStatus, c.name as categoryName, u.name as userName, p.*, c.*, u.* FROM posts as p, categories as c, users as u WHERE c.id = p.category_id AND p.created_by_id = u.id AND p.created_at BETWEEN '$startDate' AND '$endDate' AND p.category_id='$categoryId' ORDER BY p.id DESC";
+                                    } elseif ($postDate != '' && $categoryId == '') {
+                                        $postQuery = "SELECT p.id as postId, p.image as postImage, p.status as postStatus, c.name as categoryName, u.name as userName, p.*, c.*, u.* FROM posts as p, categories as c, users as u WHERE c.id = p.category_id AND p.created_by_id = u.id AND p.created_at BETWEEN '$startDate' AND '$endDate' ORDER BY p.id DESC";
+                                    } else {
+                                        $postQuery = "SELECT p.id as postId, p.image as postImage, p.status as postStatus, c.name as categoryName, u.name as userName, p.*, c.*, u.* FROM posts as p, categories as c, users as u WHERE c.id = p.category_id AND p.created_by_id = u.id AND p.category_id='$categoryId' ORDER BY p.id DESC";
+                                    }
+                                } else {
+                                    $postQuery = "SELECT p.id as postId, p.image as postImage, p.status as postStatus, c.name as categoryName, u.name as userName, p.*, c.*, u.* FROM posts as p, categories as c, users as u WHERE c.id = p.category_id AND p.created_by_id = u.id ORDER BY p.id DESC";
+                                }
                                 $postsRes = mysqli_query($conn, $postQuery);
                                 if (mysqli_num_rows($postsRes) > 0) {
                                     foreach ($postsRes as $item) :
                                 ?>
                                         <tr>
-                                            <td><img src="../../<?= $item['postImage'] != "NULL" ? $item['postImage'] : 'assets/admin/img/no-photo.jpg' ?>" alt="image" style="width: 60px; height: 60px; object-fit: cover;"></td>
+                                            <td><img src="../../<?= $item['postImage'] != "NULL" ? $item['postImage'] : 'assets/admin/img/no-photo.jpg' ?>" alt="image" style="width: 50px; height: 50px; object-fit: cover;"></td>
                                             <td><?= $item['title'] ?></td>
                                             <td><?= $item['categoryName'] ?></td>
                                             <td><?= $item['userName'] ?></td>
-                                            <td><?= $item['postStatus'] == 0 ? '<span class="text-white badge bg-success">Active</span>' : '<span class="text-white badge bg-danger">Disabled</span>' ?></td>
+                                            <td>
+                                                <?= $item['postStatus'] == 0 ? '<span class="text-white badge bg-success">Active</span>' : '<span class="text-white badge bg-danger">Disabled</span>' ?>
+                                                <?= $item['top_status'] == 1 ? '<span class="text-white badge bg-info">Top Status</span>' : '' ?>
+                                            </td>
                                             <td>
                                                 <a href="edit-post.php?id=<?= $item['postId'] ?>" class="btn btn-sm btn-info">
                                                     <i class="fas fa-edit"></i>

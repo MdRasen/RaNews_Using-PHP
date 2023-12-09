@@ -39,13 +39,20 @@ include('../includes/admin/topbar.php');
                             <form action="../../controllers/post-controller.php" method="POST" enctype="multipart/form-data">
                                 <input type="hidden" value="<?= $postInfo['data']['id'] ?>" name="post_id">
                                 <div class="row">
-                                    <div class="col-md-12 mb-3">
+                                    <div class="col-md-10 mb-3">
                                         <label for="title">Title *</label>
                                         <input type="text" name="title" class="form-control" value="<?= $postInfo['data']['title'] ?>" placeholder="Post Title" required>
                                     </div>
+                                    <div class="col-md-2 mb-3">
+                                        <label for="top_status">Top Status</label>
+                                        <select name="top_status" name="top_status" class="form-control">
+                                            <option value="1" <?= $postInfo['data']['top_status'] == "1" ? 'selected' : '' ?>>Active</option>
+                                            <option value="0" <?= $postInfo['data']['top_status'] == "0" ? 'selected' : '' ?>>Disable</option>
+                                        </select>
+                                    </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-3 mb-3">
+                                    <div class="col-md-4 mb-3">
                                         <label for="category">Category</label>
                                         <select name="category_id" class="form-control">
                                             <?php
@@ -74,7 +81,7 @@ include('../includes/admin/topbar.php');
                                         <label for="image">Image</label>
                                         <input type="file" name="image" class="form-control">
                                     </div>
-                                    <div class="col-md-2 mb-2">
+                                    <div class="col-md-1 mb-2">
                                         <br>
                                         <img src="../../<?= $postInfo['data']['image'] != "NULL" ? $postInfo['data']['image'] : 'assets/admin/img/no-photo.jpg' ?>" style="height: 60px; width: 60px; object-fit: cover;" alt="image">
                                     </div>
