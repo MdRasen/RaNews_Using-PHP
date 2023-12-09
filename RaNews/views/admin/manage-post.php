@@ -88,8 +88,10 @@ include('../includes/admin/topbar.php');
                                 <?php
                                 if (isset($_GET['date']) || isset($_GET['category_id'])) {
                                     $postDate = validate($_GET['date']);
-                                    $startDate = date('Y-m-d H:i:s', strtotime($postDate));
-                                    $endDate = date('Y-m-d H:i:s', strtotime($postDate . ' +1 day'));
+                                    if ($postDate) {
+                                        $startDate = date('Y-m-d H:i:s', strtotime($postDate));
+                                        $endDate = date('Y-m-d H:i:s', strtotime($postDate . ' +1 day'));
+                                    }
                                     $categoryId = validate($_GET['category_id']);
 
                                     if ($postDate != '' && $categoryId != '') {

@@ -1,5 +1,6 @@
 <?php
-session_start();
+require '../../controllers/config/dbcon.php';
+require '../../models/model.php';
 ?>
 
 <!DOCTYPE html>

@@ -39,36 +39,53 @@
         <div class="container px-0">
             <nav class="navbar navbar-light navbar-expand-xl">
                 <a href="index.html" class="navbar-brand mt-3">
-                    <p class="text-primary display-6 mb-2" style="line-height: 0;">Newsers</p>
-                    <small class="text-body fw-normal" style="letter-spacing: 12px;">Nespaper</small>
+                    <p class="text-primary display-6 mb-2" style="line-height: 0;">Ra</p>
+                    <small class="text-body fw-normal" style="letter-spacing: 12px;">News</small>
                 </a>
                 <button class="navbar-toggler py-2 px-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                     <span class="fa fa-bars text-primary"></span>
                 </button>
                 <div class="collapse navbar-collapse bg-light py-3" id="navbarCollapse">
                     <div class="navbar-nav mx-auto border-top">
-                        <a href="index.html" class="nav-item nav-link active">Home</a>
-                        <a href="detail-page.html" class="nav-item nav-link">Detail Page</a>
-                        <a href="404.html" class="nav-item nav-link">404 Page</a>
-                        <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Dropdown</a>
-                            <div class="dropdown-menu m-0 bg-secondary rounded-0">
-                                <a href="#" class="dropdown-item">Dropdown 1</a>
-                                <a href="#" class="dropdown-item">Dropdown 2</a>
-                                <a href="#" class="dropdown-item">Dropdown 3</a>
-                                <a href="#" class="dropdown-item">Dropdown 4</a>
-                            </div>
-                        </div>
-                        <a href="contact.html" class="nav-item nav-link">Contact Us</a>
+                        <?php
+                        $categories = viewCategories();
+                        if (mysqli_num_rows($categories) > 0) {
+                            foreach ($categories as $item) :
+                        ?>
+                                <a href="contact.html" class="nav-item nav-link"><?= $item['name'] ?></a>
+                        <?php
+                            endforeach;
+                        }
+                        ?>
                     </div>
                     <div class="d-flex flex-nowrap border-top pt-3 pt-xl-0">
                         <div class="d-flex">
                             <img src="../../assets/public/img/weather-icon.png" class="img-fluid w-100 me-2" alt="">
                             <div class="d-flex align-items-center">
-                                <strong class="fs-4 text-secondary">31°C</strong>
+                                <?php
+                                $city    = 'Dhaka';
+                                $country = 'BD';
+                                $url     = 'http://api.openweathermap.org/data/2.5/forecast/daily?q=' . $city . ',' . $country . '&units=metric&cnt=7&lang=en&appid=c0c4a4b4047b97ebc5948ac9c48c0559';
+                                $json    = file_get_contents($url);
+                                $data    = json_decode($json, true);
+                                $data['city']['name'];
+                                // var_dump($data );
+
+                                foreach ($data['list'] as $day => $value) {
+                                    if ($day == 0) {
+                                ?>
+                                        <strong class="fs-4 text-secondary"><?= floor($value['temp']['max']) . '°C'; ?></strong>
+                                <?php
+                                    }
+                                }
+                                ?>
                                 <div class="d-flex flex-column ms-2" style="width: 150px;">
-                                    <span class="text-body">NEW YORK,</span>
-                                    <small>Mon. 10 jun 2024</small>
+                                    <span class="text-body">Dhaka, BD</span>
+                                    <?php
+                                    $today = date('D');
+                                    $todayDate = date('M d, Y');
+                                    ?>
+                                    <small><?= $today ?> . <?= date("M d, Y", strtotime($todayDate)); ?> </small>
                                 </div>
                             </div>
                         </div>
