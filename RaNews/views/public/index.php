@@ -13,7 +13,7 @@ include '../includes/public/header.php';
                 if (mysqli_num_rows($result) > 0) {
                     foreach ($result as $item):
                         if ($item['total_views'] >= 1000) {
-                            $total_views = round(($item['total_views'] / 1000), 1) . "k";
+                            $total_views = round($item['total_views'] / 1000) . "k";
                         } else {
                             $total_views = $item['total_views'];
                         }
@@ -38,7 +38,7 @@ include '../includes/public/header.php';
                                         <p class="text-uppercase mb-2">
                                             <?= $item['categoryName'] ?>
                                         </p>
-                                        <a href="#" class="h6">
+                                        <a href="single-post.php?category=<?= $item['name_slug'] ?>&&title=<?= $item['title_slug'] ?>" class="h6">
                                             <?= $item['title'] ?>
                                         </a>
                                         <small class="text-body d-block"><i class="fas fa-calendar-alt me-1"></i>
@@ -169,7 +169,7 @@ include '../includes/public/header.php';
                             if (mysqli_num_rows($sideTopResult) > 0) {
                                 foreach ($sideTopResult as $item):
                                     if ($item['total_views'] >= 1000) {
-                                        $total_views = round(($item['total_views'] / 1000), 1) . "k";
+                                        $total_views = round($item['total_views'] / 1000) . "k";
                                     } else {
                                         $total_views = $item['total_views'];
                                     }
@@ -222,7 +222,7 @@ include '../includes/public/header.php';
                     unknown printer took a galley
                 </p>
                 <div class="position-relative mx-auto">
-                    <input class="form-control w-100 py-3 rounded-pill" type="email" placeholder="Your Busines Email">
+                    <input class="form-control w-100 py-3 rounded-pill" type="email" placeholder="Your Business Email">
                     <button type="submit"
                         class="btn btn-primary py-3 px-5 position-absolute rounded-pill text-white h-100"
                         style="top: 0; right: 0;">Subscribe Now</button>
@@ -322,7 +322,7 @@ include '../includes/public/header.php';
                                     class="tab-pane fade show p-0 <?= $name_slug == 'সর্বশেষ' ? 'active' : '' ?>">
                                     <div class="row g-4">
                                         <?php
-                                        $postsByCategory = "SELECT p.id as postId, p.image as postImage, p.status as postStatus, p.updated_at as postUpdatedDate, c.name as categoryName, u.name as userName, p.*, c.*, u.* FROM posts as p, categories as c, users as u WHERE p.status='0' AND c.id = p.category_id AND c.name_slug='$name_slug' AND p.created_by_id = u.id ORDER BY p.id DESC LIMIT 5";
+                                        $postsByCategory = "SELECT p.id as postId, p.image as postImage, p.status as postStatus, p.updated_at as postUpdatedDate, c.name as categoryName, u.name as userName, p.*, c.*, u.* FROM posts as p, categories as c, users as u WHERE p.status='0' AND c.id = p.category_id AND c.name_slug='$name_slug' AND p.created_by_id = u.id ORDER BY p.id DESC LIMIT 6";
                                         $postsByCategoryResult = mysqli_query($conn, $postsByCategory);
                                         if ($result) {
                                             if (mysqli_num_rows($postsByCategoryResult) > 0) {
@@ -376,7 +376,7 @@ include '../includes/public/header.php';
                             if (mysqli_num_rows($mostViewedPostsResult) > 0) {
                                 foreach ($mostViewedPostsResult as $item):
                                     if ($item['total_views'] >= 1000) {
-                                        $total_views = round(($item['total_views'] / 1000), 1) . "k";
+                                        $total_views = round($item['total_views'] / 1000) . "k";
                                     } else {
                                         $total_views = $item['total_views'];
                                     }
@@ -416,13 +416,13 @@ include '../includes/public/header.php';
                             <?php
                             $postsByCategory = "SELECT p.id as postId, p.image as postImage, p.status as postStatus, p.updated_at as postUpdatedDate, c.name as categoryName, u.name as userName, p.*, c.*, u.* FROM posts as p, categories as c, users as u WHERE p.status='0' AND c.id = p.category_id AND c.name_slug='বিনোদন' AND p.created_by_id = u.id ORDER BY p.id DESC LIMIT 2";
                             $postsByCategoryResult = mysqli_query($conn, $postsByCategory);
-                            if ($result) {
+                            if ($postsByCategoryResult) {
                                 if (mysqli_num_rows($postsByCategoryResult) > 0) {
                                     foreach ($postsByCategoryResult as $item):
                                         ?>
                                         <div class="col-lg-6">
                                             <div class="lifestyle-item rounded">
-                                                <img src="../../<?= $item['postImage'] != "NULL" ? $item['postImage'] : 'assets/admin/img/no-photo.jpg' ?>"" class="
+                                                <img src="../../<?= $item['postImage'] != "NULL" ? $item['postImage'] : 'assets/admin/img/no-photo.jpg' ?>" class="
                                                     img-fluid w-100 rounded" alt="">
                                                 <div class="lifestyle-content">
                                                     <div class="mt-auto">
