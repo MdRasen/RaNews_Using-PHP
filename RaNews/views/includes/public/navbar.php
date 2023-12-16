@@ -10,31 +10,52 @@
                     <div class="pe-2 me-3 border-end border-white d-flex align-items-center">
                         <p class="mb-0 text-white fs-6 fw-normal">Trending</p>
                     </div>
-                    <div class="overflow-hidden" style="width: 735px;">
-                        <div id="note" class="ps-2">
-                            <?php
-                            $top_post = "SELECT * FROM posts WHERE top_status='1' AND status='0' LIMIT 1";
-                            $result = mysqli_query($conn, $top_post);
-                            if ($result) {
-                                if (mysqli_num_rows($result) == 1) {
-                                    $topPostData = mysqli_fetch_assoc($result);
-                                    $image_src = $topPostData['image'];
-                                    $title = $topPostData['title'];
-                                } else {
-                                    $title = "No news has been selected as top news!";
-                                }
-                            }
-                            ?>
-                            <img src="../../<?= $image_src == true ? $image_src : 'assets/admin/img/no-photo.jpg' ?>"
-                                class="img-fluid rounded-circle border border-3 border-primary me-2"
-                                style="width: 30px; height: 30px;" alt="">
-                            <a href="#">
-                                <p class="text-white mb-0 link-hover">
-                                    <?= $title ?>
-                                </p>
-                            </a>
+                    <?php
+                    $topPostId = 0;
+                    $top_post = "SELECT p.id as postId, p.*, c.* FROM posts as p, categories as c WHERE top_status='1' AND p.status='0' AND c.id = p.category_id LIMIT 1";
+                    $topPostResult = mysqli_query($conn, $top_post);
+                    if ($topPostResult) {
+                        if (mysqli_num_rows($topPostResult) == 1) {
+                            $topPostData = mysqli_fetch_assoc($topPostResult);
+                            $topPostId = $topPostData['postId'];
+                            $topPostImage = $topPostData['image'];
+                            $topPostTitle = $topPostData['title'];
+                            $topPostTitleSlug = $topPostData['title_slug'];
+                            $topPostCategorySlug = $topPostData['name_slug'];
+                        } else {
+                            $topPostData = false;
+                        }
+                    }
+                    ?>
+                    <?php
+                    if ($topPostData) {
+                        ?>
+                        <div class="overflow-hidden" style="width: 735px;">
+                            <div id="note" class="ps-2">
+                                <img src="../../<?= $topPostImage ?>"
+                                    class="img-fluid rounded-circle border border-3 border-primary me-2"
+                                    style="width: 30px; height: 30px;" alt="">
+                                <a
+                                    href="single-post.php?category=<?= $topPostCategorySlug ?>&&title=<?= $topPostTitleSlug ?>">
+                                    <p class="text-white mb-0 link-hover">
+                                        <?= $topPostTitle ?>
+                                    </p>
+                                </a>
+                            </div>
                         </div>
-                    </div>
+                        <?php
+                    } else {
+                        ?>
+                        <div class="overflow-hidden" style="width: 735px;">
+                            <div id="note" class="ps-2">
+                                <p class="text-white mb-0 link-hover">
+                                    No item has been selected as top post.
+                                </p>
+                            </div>
+                        </div>
+                        <?php
+                    }
+                    ?>
                 </div>
                 <div class="top-link flex-lg-wrap">
                     <i class="fas fa-calendar-alt text-white border-end border-secondary pe-2 me-2"> <span
@@ -67,7 +88,7 @@
                         if (mysqli_num_rows($categories) > 0) {
                             foreach ($categories as $item):
                                 ?>
-                                <a href="contact.html" class="nav-item nav-link">
+                                <a href="category-posts.php?category=<?= $item['name_slug'] ?>" class="nav-item nav-link">
                                     <?= $item['name'] ?>
                                 </a>
                                 <?php

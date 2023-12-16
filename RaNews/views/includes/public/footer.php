@@ -24,8 +24,9 @@
             <div class="col-lg-6 col-xl-3">
                 <div class="footer-item-1">
                     <h4 class="mb-4 text-white">Get In Touch</h4>
-                    <p class="text-secondary line-h">Address: <span class="text-white">123 Streat, New York</span></p>
-                    <p class="text-secondary line-h">Email: <span class="text-white">Example@gmail.com</span></p>
+                    <p class="text-secondary line-h">Address: <span class="text-white">Wireless Road, Moghbazar, Dhaka:
+                            1217</span></p>
+                    <p class="text-secondary line-h">Email: <span class="text-white">info@domain.com</span></p>
                     <p class="text-secondary line-h">Phone: <span class="text-white">+0123 4567 8910</span></p>
                     <div class="d-flex line-h">
                         <a class="btn btn-light me-2 btn-md-square rounded-circle" href=""><i
@@ -60,7 +61,8 @@
                                                 <p class="text-uppercase text-white mb-3">
                                                     <?= $item['categoryName'] ?>
                                                 </p>
-                                                <a href="#" class="h6 text-white">
+                                                <a href="single-post.php?category=<?= $item['name_slug'] ?>&&title=<?= $item['title_slug'] ?>"
+                                                    class="h6 text-white">
                                                     <?= $item['title'] ?>
                                                 </a>
                                                 <small class="text-white d-block"><i class="fas fa-calendar-alt me-1"></i>
@@ -88,7 +90,8 @@
                     if (mysqli_num_rows($categoryResult) > 0) {
                         foreach ($categoryResult as $item):
                             ?>
-                            <a class="btn-link text-white" href="#"><i class="fas fa-angle-right text-white me-2"></i>
+                            <a class="btn-link text-white" href="category-posts.php?category=<?= $item['name_slug'] ?>"><i
+                                    class="fas fa-angle-right text-white me-2"></i>
                                 <?= $item['name'] ?>
                             </a>
                             <?php
