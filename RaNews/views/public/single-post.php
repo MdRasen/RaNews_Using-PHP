@@ -251,12 +251,14 @@ include '../includes/public/header.php';
                 <div class="row g-4">
                     <div class="col-12">
                         <div class="p-3 rounded border">
-                            <div class="input-group w-100 mx-auto d-flex mb-4">
-                                <input type="search" class="form-control p-3" placeholder="keywords"
-                                    aria-describedby="search-icon-1">
-                                <span id="search-icon-1" class="btn btn-primary input-group-text p-3"><i
-                                        class="fa fa-search text-white"></i></span>
-                            </div>
+                            <form action="../../controllers/public-controller.php" method="POST"
+                                class="input-group w-100 mx-auto d-flex mb-4">
+                                <input type="search" name="searchKeyword" class="form-control p-3"
+                                    placeholder="keywords" aria-describedby="search-icon-1">
+                                <button type="submit" name="searchSubmit" id="search-icon-1"
+                                    class="btn btn-primary input-group-text p-3"><i
+                                        class="fa fa-search text-white"></i></button>
+                            </form>
                             <h4 class="mb-4">Popular Categories</h4>
                             <div class="row g-2">
                                 <?php

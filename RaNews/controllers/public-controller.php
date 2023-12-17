@@ -45,3 +45,9 @@ if (isset($_GET['logout']) == "true") {
         redirect('../views/public/login.php', 'User has been logged out successfully!');
     }
 }
+
+// User keyword Search
+if (isset($_POST['searchSubmit'])) {
+    $searchKeyword = validate($_POST['searchKeyword']);
+    redirect('../views/public/search.php?keyword=' . $searchKeyword, '');
+}

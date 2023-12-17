@@ -7,25 +7,25 @@ include '../includes/public/header.php';
     <div class="container py-5">
         <ol class="breadcrumb justify-content-start mb-4">
             <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-            <li class="breadcrumb-item text-dark">Category</li>
+            <li class="breadcrumb-item text-dark">Search Keyword</li>
             <li class="breadcrumb-item active text-dark">
-                <?= $_GET["category"] ?>
+                <?= $_GET["keyword"] ?>
             </li>
         </ol>
         <div class="row g-4">
             <div class="col-lg-8">
                 <div class="row g-4">
                     <?php
-                    if (isset($_GET['category'])) {
-                        if ($_GET['category'] != "") {
-                            $categorySlug = $_GET["category"];
+                    if (isset($_GET['keyword'])) {
+                        if ($_GET['keyword'] != "") {
+                            $keyword = $_GET["keyword"];
                         }
                     }
-                    $postsByCategory = "SELECT p.id as postId, p.image as postImage, p.status as postStatus, p.updated_at as postUpdatedDate, c.name as categoryName, u.name as userName, p.*, c.*, u.* FROM posts as p, categories as c, users as u WHERE p.status='0' AND c.id = p.category_id AND c.name_slug='$categorySlug' AND p.created_by_id = u.id ORDER BY p.id DESC LIMIT 12";
-                    $postsByCategoryResult = mysqli_query($conn, $postsByCategory);
-                    if ($postsByCategoryResult) {
-                        if (mysqli_num_rows($postsByCategoryResult) > 0) {
-                            foreach ($postsByCategoryResult as $item):
+                    $postsByKeyword = "SELECT p.id as postId, p.image as postImage, p.status as postStatus, p.updated_at as postUpdatedDate, c.name as categoryName, u.name as userName, p.*, c.*, u.* FROM posts as p, categories as c, users as u WHERE p.status='0' AND c.id = p.category_id AND p.title LIKE '%$keyword%' AND p.created_by_id = u.id ORDER BY p.id DESC LIMIT 12";
+                    $postsBySearchResult = mysqli_query($conn, $postsByKeyword);
+                    if ($postsBySearchResult) {
+                        if (mysqli_num_rows($postsBySearchResult) > 0) {
+                            foreach ($postsBySearchResult as $item):
                                 ?>
                                 <div class="col-md-6">
                                     <div class="row g-4 align-items-center">
