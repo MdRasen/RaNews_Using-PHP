@@ -26,7 +26,7 @@ include '../includes/public/header.php';
                     ?>
                     <div class="col-lg-8">
                         <div class="mb-4">
-                            <a href="#" class="h1 display-5">
+                            <a href="#" class="h1 display-6">
                                 <?= $postInfo['data']['title'] ?>
                             </a>
                         </div>
@@ -148,7 +148,8 @@ include '../includes/public/header.php';
                                                     <img src="../../<?= $item['postImage'] != "NULL" ? $item['postImage'] : 'assets/admin/img/no-photo.jpg' ?>"
                                                         class="img-fluid rounded" width="100px" height="100px" alt="">
                                                     <div class="ms-3">
-                                                        <a href="#" class="h6 mb-2">
+                                                        <a href="single-post.php?category=<?= $item['name_slug'] ?>&&title=<?= $item['title_slug'] ?>"
+                                                            class="h6 mb-2">
                                                             <?= $item['title'] ?>
                                                         </a>
                                                         <p class="text-dark mt-3 mb-0 me-3"><i class="fa fa-clock"></i> 06 minute read</p>

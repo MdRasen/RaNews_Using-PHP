@@ -324,20 +324,20 @@ include '../includes/public/header.php';
                                         <?php
                                         $postsByCategory = "SELECT p.id as postId, p.image as postImage, p.status as postStatus, p.updated_at as postUpdatedDate, c.name as categoryName, u.name as userName, p.*, c.*, u.* FROM posts as p, categories as c, users as u WHERE p.status='0' AND c.id = p.category_id AND c.name_slug='$name_slug' AND p.created_by_id = u.id ORDER BY p.id DESC LIMIT 6";
                                         $postsByCategoryResult = mysqli_query($conn, $postsByCategory);
-                                        if ($result) {
+                                        if ($postsByCategoryResult) {
                                             if (mysqli_num_rows($postsByCategoryResult) > 0) {
                                                 foreach ($postsByCategoryResult as $item):
                                                     ?>
-                                                    <div class="col-6">
+                                                    <div class="col-md-6">
                                                         <div class="row g-4 align-items-center">
-                                                            <div class="col-5">
+                                                            <div class="col-lg-5">
                                                                 <div class="overflow-hidden rounded">
-                                                                    <img src="../../<?= $item['postImage'] != "NULL" ? $item['postImage'] : 'assets/admin/img/no-photo.jpg' ?>""
+                                                                    <img src="../../<?= $item['postImage'] != "NULL" ? $item['postImage'] : 'assets/admin/img/no-photo.jpg' ?>"
                                                                                 class=" img-zoomin img-fluid rounded
                                                                         w-100" alt="">
                                                                 </div>
                                                             </div>
-                                                            <div class="col-7">
+                                                            <div class="col-lg-7">
                                                                 <div class="features-content d-flex flex-column">
                                                                     <p class="text-uppercase mb-2">
                                                                         <?= $item['categoryName'] ?>
